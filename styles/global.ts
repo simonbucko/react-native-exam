@@ -7,10 +7,11 @@ const globalStyles = StyleSheet.create({
         backgroundColor: Palette.bright,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 20
     },
     text: {
         fontFamily: 'Teko_400Regular',
-        color: Palette.primary,
+        color: Palette.text_primary,
     },
 })
 

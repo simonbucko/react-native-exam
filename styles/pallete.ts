@@ -1,5 +1,6 @@
 enum Palette {
-    primary = "#32305D",
+    primary = "#5050A5",
+    text_primary = "#32305D",
     bright = "#fff",
     dark = "#000",
     gray = "#707070",
