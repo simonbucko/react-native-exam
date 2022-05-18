@@ -5,6 +5,15 @@ import ReduxThunk from 'redux-thunk';
 import Navigation from './components/Navigation';
 import chatReducer from './store/reducers/chat.reducer';
 import userReducer from './store/reducers/user.reducer';
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  Teko_300Light,
+  Teko_400Regular,
+  Teko_500Medium,
+  Teko_600SemiBold,
+  Teko_700Bold,
+} from '@expo-google-fonts/teko';
 
 
 const rootReducer = combineReducers({
@@ -21,10 +30,23 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 
 export default function App() {
-  return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
-  )
+  let [fontsLoaded] = useFonts({
+    Teko_300Light,
+    Teko_400Regular,
+    Teko_500Medium,
+    Teko_600SemiBold,
+    Teko_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    )
+  }
+  
 }
 

@@ -8,7 +8,7 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <Text style={{fontFamily: 'Teko_400Regular'}}>Home Screen</Text>
             <Button title="Logout" onPress={() => dispatch(logout())} />
         </View>
     );
