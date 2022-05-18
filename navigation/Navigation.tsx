@@ -9,10 +9,10 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SignupScreen from '../screens/SignupScreen';
-import Screen1 from './../screens/Screen1';
-import Screen2 from './../screens/Screen2';
-import Screen3 from './../screens/Screen3';
-import { StackParamList } from "./../typings/navigations";
+import Screen1 from '../screens/Screen1';
+import Screen2 from '../screens/Screen2';
+import Screen3 from '../screens/Screen3';
+import { StackParamList } from "../typings/navigations";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();

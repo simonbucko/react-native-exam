@@ -1,17 +1,15 @@
 import { StyleSheet } from "react-native";
+import Palette from "./pallete";
 
 export const globalStyles = StyleSheet.create({
     container: {
-        padding: 24,
         flex: 1,
+        backgroundColor: Palette.bright,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {
-        fontFamily: "roboto-regular",
-        fontSize: 18,
-        color: "#333"
+        fontFamily: 'Teko_400Regular',
+        color: Palette.primary,
     },
-    paragraph: {
-        marginVertical: 8,
-        lineHeight: 20
-    }
 })

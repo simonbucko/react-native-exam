@@ -5,3 +5,5 @@ enum Palette {
     gray = "#707070",
     secondary = "#FFBA00",
 }
+
+export default Palette;
