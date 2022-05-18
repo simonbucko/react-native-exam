@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../App';
 import EditProfileScreen from '../screens/EditProfileScreen';
@@ -13,6 +12,7 @@ import Screen1 from '../screens/Screen1';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import { StackParamList } from "../typings/navigations";
+import { InitialScreen,EventsScreen,ChatScreen, HistoryScreen } from '../screens/onboarding';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -32,6 +32,17 @@ function ProfileStackNavigator() {
         <Stack.Navigator>
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        </Stack.Navigator>
+    )
+}
+
+function OnboardingNavigator() {
+    return (
+        <Stack.Navigator >
+            <Stack.Screen name="InitialScreen" component={InitialScreen} />
+            <Stack.Screen name="EventsScreen" component={EventsScreen} />
+            <Stack.Screen name="ChatScreen" component={ChatScreen} />
+            <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>
     )
 }
@@ -57,6 +68,8 @@ export default function Navigation() {
             ) : (
                 // show a stack navigator with only signup and login screens.
                 <Stack.Navigator>
+
+                    {/* <Stack.Screen name="Onboarding" component={SignupScreen} /> */}
                     <Stack.Screen name="Signup" component={SignupScreen} />
                     {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
                 </Stack.Navigator>
@@ -64,12 +77,3 @@ export default function Navigation() {
         </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})

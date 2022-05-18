@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import Palette from "./pallete";
 
-export const globalStyles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Palette.bright,
@@ -13,3 +13,5 @@ export const globalStyles = StyleSheet.create({
         color: Palette.primary,
     },
 })
+
+export default globalStyles;
