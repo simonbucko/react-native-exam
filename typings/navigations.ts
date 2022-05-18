@@ -9,4 +9,5 @@ export type StackParamList = {
     EventsScreen: undefined;
     ChatScreen: undefined;
     HistoryScreen: undefined;
+    Onboarding: undefined;
 }

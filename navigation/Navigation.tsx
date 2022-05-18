@@ -38,8 +38,8 @@ function ProfileStackNavigator() {
 
 function OnboardingNavigator() {
     return (
-        <Stack.Navigator >
-            <Stack.Screen name="InitialScreen" component={InitialScreen} />
+        <Stack.Navigator screenOptions={{headerBackTitleVisible:false, headerTitle:""}} >
+            <Stack.Screen name="InitialScreen" component={InitialScreen}/>
             <Stack.Screen name="EventsScreen" component={EventsScreen} />
             <Stack.Screen name="ChatScreen" component={ChatScreen} />
             <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
@@ -67,9 +67,8 @@ export default function Navigation() {
                 </Tab.Navigator>
             ) : (
                 // show a stack navigator with only signup and login screens.
-                <Stack.Navigator>
-
-                    {/* <Stack.Screen name="Onboarding" component={SignupScreen} /> */}
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    {true && <Stack.Screen name="Onboarding" component={OnboardingNavigator} />}
                     <Stack.Screen name="Signup" component={SignupScreen} />
                     {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
                 </Stack.Navigator>
