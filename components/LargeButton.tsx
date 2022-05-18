@@ -11,8 +11,8 @@ interface ILargeButton {
 
 const LargeButton = ({ text,handleOnClick }:ILargeButton) => {
     return (
-        <TouchableOpacity style={styles.button} onPress={() => handleOnClick()}>
-            <Text style={{...globalStyles.text,...styles.textStyle}}>{text}</Text>
+        <TouchableOpacity activeOpacity={1} style={styles.button} onPress={() => handleOnClick()}>
+            <Text style={{...globalStyles.text,...styles.text}}>{text}</Text>
         </TouchableOpacity>
     );
 }
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 5
     },
-    textStyle:{
+    text:{
         color: Palette.bright,
         fontSize: 16,
     }
