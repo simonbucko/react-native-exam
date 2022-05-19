@@ -6,14 +6,30 @@ import { StackParamList } from "../../typings/navigations";
 import { useNavigation } from '@react-navigation/native';
 import Palette from '../../styles/pallete';
 import * as SecureStore from 'expo-secure-store';
+import { useDispatch } from 'react-redux';
+import {onboardingFinished} from "../../store/actions/ui.actions"
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
     "InitialScreen"
 >
 
+
+
 export default function InitialScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
+    const dispatch = useDispatch();
+
+    const checkIsOnboardingFinished = async () => {
+        const isOnboardingFinished = await SecureStore.getItemAsync("isOnboardingFinished")
+        if (isOnboardingFinished === 'true'){
+            dispatch(onboardingFinished())
+        }
+    }
+
+    React.useEffect(() => {
+        checkIsOnboardingFinished()
+    },[])
 
     return (
         <TouchableOpacity activeOpacity={1} style={{...globalStyles.container,...styles.container}} onPress={() => navigation.navigate("EventsScreen")}>

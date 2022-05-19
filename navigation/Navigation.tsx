@@ -51,6 +51,7 @@ function OnboardingNavigator() {
 export default function Navigation() {
     const user = useSelector((state: RootState) => state.user.loggedInUser)
     const isOnboardingFinished = useSelector((state: RootState) => state.ui.isOnboardingFinished)
+    console.log("was run", isOnboardingFinished, typeof isOnboardingFinished)
 
     return (
         <NavigationContainer>
@@ -62,12 +63,10 @@ export default function Navigation() {
                 // Show the app with all navigation
                 <Tab.Navigator screenOptions={{ headerShown: false }}>
                     <Tab.Screen name="Home" component={HomeScreen} />
-                    {/* <Tab.Screen name="Discover" component={DiscoverScreen} /> */}
                     <Tab.Screen name="Chat" component={ChatStackNavigator} />
                     <Tab.Screen name="Menu" component={ProfileStackNavigator} />
                 </Tab.Navigator>
             ) : (
-                // show a stack navigator with only signup and login screens.
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                     {!isOnboardingFinished && <Stack.Screen name="Onboarding" component={OnboardingNavigator} />}
                     <Stack.Screen name="Signup" component={SignupScreen} />

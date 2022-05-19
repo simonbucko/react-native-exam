@@ -8,9 +8,8 @@ const rootReducer = combineReducers({
     chat: chatReducer,
     user: userReducer,
     ui: uiReducer
-    // posts: PostReducer
   });
-  
+
   export type RootState = ReturnType<typeof rootReducer>
   
   const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
