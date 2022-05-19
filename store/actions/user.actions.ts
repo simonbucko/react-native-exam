@@ -27,27 +27,23 @@ export const signup = (email: string, password: string) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ //javascript to json
-                //key value pairs of data you want to send to server
-                // ...
+            body: JSON.stringify({ 
                 email: email,
                 password: password,
                 returnSecureToken: true
             })
         });
 
-        // console.log(response.json());
-
         if (!response.ok) {
             //There was a problem..
             //dispatch({type: SIGNUP_FAILED, payload: 'something'})
         } else {
-            const data: FirebaseSignupSuccess = await response.json(); // json to javascript
+            const data: FirebaseSignupSuccess = await response.json(); 
 
             const user = new User(data.email, '', '');
 
             await SecureStore.setItemAsync('idToken', data.idToken);
-            await SecureStore.setItemAsync('user', JSON.stringify(user)); // convert user js-obj. to json
+            await SecureStore.setItemAsync('user', JSON.stringify(user)); 
 
             dispatch({ type: SIGNUP, payload: { user, idToken: data.idToken } })
         }
