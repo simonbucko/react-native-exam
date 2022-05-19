@@ -51,7 +51,6 @@ function OnboardingNavigator() {
 export default function Navigation() {
     const user = useSelector((state: RootState) => state.user.loggedInUser)
     const isOnboardingFinished = useSelector((state: RootState) => state.ui.isOnboardingFinished)
-    console.log("was run", isOnboardingFinished, typeof isOnboardingFinished)
 
     return (
         <NavigationContainer>
