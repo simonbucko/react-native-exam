@@ -1,4 +1,3 @@
-import { User } from "../../entities/User";
 import { ONBOARDING_FINISHED } from "../actions/ui.actions";
 
 interface ReduxState {

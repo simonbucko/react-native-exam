@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import globalStyles from "../../styles/global"
 import { LargeButton } from '../../components';
 import { useDispatch } from 'react-redux';
-
+import { onboardingFinished } from '../../store/actions/ui.actions';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from "../../typings/navigations";
 import { useNavigation } from '@react-navigation/native';
@@ -19,7 +19,8 @@ export default function HistoryScreen() {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        navigation.navigate("Signup")
+        navigation.navigate("Signup");
+        dispatch(onboardingFinished())
     }
 
     return (
