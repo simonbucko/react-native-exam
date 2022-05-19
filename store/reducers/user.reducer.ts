@@ -3,12 +3,12 @@ import { LOGOUT, REHYDRATE_USER, SIGNUP } from "../actions/user.actions";
 
 interface ReduxState {
     loggedInUser: User | null,
-    idToken: string | undefined
+    idToken: string | undefined,
 }
 
 const initialState: ReduxState = {
     loggedInUser: null,
-    idToken: undefined
+    idToken: undefined,
 }
 
 const userReducer = (state: ReduxState = initialState, action: any) => {

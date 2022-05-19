@@ -1,13 +1,13 @@
 
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import chatReducer from './reducers/chat.reducer';
-import userReducer from './reducers/user.reducer';
+import {chatReducer, userReducer, uiReducer} from "./reducers"
 
 
 const rootReducer = combineReducers({
     chat: chatReducer,
     user: userReducer,
+    ui: uiReducer
     // posts: PostReducer
   });
   export type RootState = ReturnType<typeof rootReducer>

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import globalStyles from "../../styles/global"
 import { LargeButton } from '../../components';
+import { useDispatch } from 'react-redux';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from "../../typings/navigations";
@@ -15,6 +16,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 export default function HistoryScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
+    const dispatch = useDispatch();
 
     const handleClick = () => {
         navigation.navigate("Signup")
