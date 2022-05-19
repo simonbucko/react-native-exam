@@ -14,8 +14,6 @@ type ScreenNavigationType = NativeStackNavigationProp<
     "InitialScreen"
 >
 
-
-
 export default function InitialScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
     const dispatch = useDispatch();
