@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from "../../typings/navigations";
 import { useNavigation } from '@react-navigation/native';
 import Palette from '../../styles/pallete';
+import * as SecureStore from 'expo-secure-store';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,

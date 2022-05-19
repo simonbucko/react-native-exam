@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../App';
+import { RootState } from '../store';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -50,6 +50,7 @@ function OnboardingNavigator() {
 
 export default function Navigation() {
     const user = useSelector((state: RootState) => state.user.loggedInUser)
+    const isOnboardingFinished = useSelector((state: RootState) => state.ui.isOnboardingFinished)
 
     return (
         <NavigationContainer>
@@ -68,7 +69,7 @@ export default function Navigation() {
             ) : (
                 // show a stack navigator with only signup and login screens.
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    {true && <Stack.Screen name="Onboarding" component={OnboardingNavigator} />}
+                    {!isOnboardingFinished && <Stack.Screen name="Onboarding" component={OnboardingNavigator} />}
                     <Stack.Screen name="Signup" component={SignupScreen} />
                     {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
                 </Stack.Navigator>

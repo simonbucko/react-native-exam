@@ -5,9 +5,8 @@ export const ONBOARDING_FINISHED = 'ONBOARDING_FINISHED';
 
 
 
-export const onboardingFinished = () => {
-    const bla = SecureStore.getItemAsync("haha")
-    console.log(bla)
+export const onboardingFinished = () => async () => {
+    SecureStore.setItemAsync("isOnboardingFinished","true")
     return { type: ONBOARDING_FINISHED }
 }
 
