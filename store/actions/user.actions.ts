@@ -9,6 +9,7 @@ export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 
@@ -43,7 +44,6 @@ export const signup = (email: string, password: string) => {
 
         if (!response.ok) {
             const data:any = await response.json();
-            console.log(data)
             let errorMessage;
             switch(data.error.message){
                 case 'INVALID_EMAIL':
@@ -89,18 +89,36 @@ export const login = (email: string, password: string) => {
         });
 
         if (!response.ok) {
-            console.log("there was a problem")
-            //There was a problem..
-            //dispatch({type: SIGNUP_FAILED, payload: 'something'})
+            const data:any = await response.json();
+            let errorMessage;
+            console.log(data.error.message)
+            switch(data.error.message){
+                case 'INVALID_EMAIL':
+                    errorMessage = "Invalid email"
+                    break;
+                case 'MISSING_PASSWORD':
+                    errorMessage = "Missing password"
+                    break;
+                case 'EMAIL_NOT_FOUND':
+                    errorMessage = "Invalid credentials"
+                    break;
+                case 'INVALID_PASSWORD':
+                    errorMessage = "Invalid password"
+                    break;
+                default:
+
+            }
+            dispatch({type: LOGIN_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseLoginSuccess = await response.json(); 
-
+            
             const user = new User(data.email, '', '');
-
+            
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
-
+            
             dispatch({ type: LOGIN, payload: { user, idToken: data.idToken } })
+            dispatch(clearErrors());
         }
     };
 };
