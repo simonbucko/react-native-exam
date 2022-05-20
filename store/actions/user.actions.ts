@@ -45,10 +45,14 @@ export const signup = (email: string, password: string) => {
         if (!response.ok) {
             const data:any = await response.json();
             let errorMessage;
+            
+            console.log(data.error.message)
             switch(data.error.message){
                 case 'INVALID_EMAIL':
                     errorMessage = "Invalid email"
-                    console.log("was herer")
+                    break;
+                case 'EMAIL_EXISTS':
+                    errorMessage = "Email is in use"
                     break;
                 case 'MISSING_PASSWORD':
                     errorMessage = "Missing password"
@@ -91,7 +95,6 @@ export const login = (email: string, password: string) => {
         if (!response.ok) {
             const data:any = await response.json();
             let errorMessage;
-            console.log(data.error.message)
             switch(data.error.message){
                 case 'INVALID_EMAIL':
                     errorMessage = "Invalid email"
