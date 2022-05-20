@@ -1,4 +1,5 @@
 import { Chatroom } from "../../entities/Chatroom";
+import { API_URL } from "../../variables";
 
 // https://cbscs-7a227-default-rtdb.europe-west1.firebasedatabase.app
 
@@ -15,7 +16,7 @@ export const fetchChatrooms = () => {
         const token = getState().user.idToken;
 
         const response = await fetch(
-            `${process.env.API_URL}/chatrooms.json?auth=` + token, {
+            `${API_URL}/chatrooms.json?auth=` + token, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

@@ -2,13 +2,14 @@ import * as SecureStore from 'expo-secure-store';
 import { FirebaseSignupSuccess } from "../../entities/FirebaseSignupSuccess";
 import { FirebaseLoginSuccess } from "../../entities/FirebaseLoginSuccess";
 import { User } from '../../entities/User';
-
-
+import { WEB_API_KEY } from '../../variables';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
+export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+
 
 export const rehydrateUser = (user: User, idToken: string) => {
     return { type: REHYDRATE_USER, payload: { user, idToken } }
@@ -23,7 +24,7 @@ export const logout = () => {
 export const signup = (email: string, password: string) => {
     return async (dispatch: any, getState: any) => {
         //const token = getState().user.token; // if you have a reducer named user(from combineReducers) with a token variable​
-        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.WEB_API_KEY}`, {
+        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${WEB_API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,8 +37,15 @@ export const signup = (email: string, password: string) => {
         });
 
         if (!response.ok) {
-            //There was a problem..
-            //dispatch({type: SIGNUP_FAILED, payload: 'something'})
+            const data:any = await response.json();
+            let errorMessage;
+            switch(data.error.message){
+                case 'INVALID_EMAIL':
+                    errorMessage = "Invalid email"
+                default:
+
+            }
+            dispatch({type: SIGNUP_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseSignupSuccess = await response.json(); 
 
@@ -53,7 +61,7 @@ export const signup = (email: string, password: string) => {
 
 export const login = (email: string, password: string) => {
     return async (dispatch: any, getState: any) => {
-        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDb3OgR2jqrHuAhKcnujdBwsttDJW11Li0`, {
+        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${WEB_API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,9 +75,6 @@ export const login = (email: string, password: string) => {
 
         if (!response.ok) {
             console.log("there was a problem")
-            const data:any = await response.json();
-            console.log(data)
-            console.log(process.env.WEB_API_KEY)
             //There was a problem..
             //dispatch({type: SIGNUP_FAILED, payload: 'something'})
         } else {

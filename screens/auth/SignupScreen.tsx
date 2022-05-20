@@ -6,6 +6,8 @@ import { rehydrateUser, signup } from '../../store/actions/user.actions';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from "../../typings/navigations";
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import {RootState} from "../../store"
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -17,6 +19,8 @@ export default function SignupScreen() {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigation = useNavigation<ScreenNavigationType>()
+    const signupError = useSelector((state: RootState) => state.user.signupError)
+    console.log(signupError,"from components")
 
     async function readPersistedUserInfo() {
         const token = await SecureStore.getItemAsync('idToken');
@@ -41,6 +45,9 @@ export default function SignupScreen() {
             <TextInput value={email} placeholder="email" onChangeText={setEmail} />
             <TextInput value={password} placeholder="password" onChangeText={setPassword} />
             <Button title="Signup" onPress={() => dispatch(signup(email, password))} />
+            {signupError && (
+                <Text>{signupError}</Text>
+            )}
             <Button title="Go to login up page" onPress={() => navigation.navigate("LoginScreen")} />
         </View>
     );
