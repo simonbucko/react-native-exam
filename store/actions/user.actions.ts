@@ -48,6 +48,7 @@ export const signup = (email: string, password: string) => {
             switch(data.error.message){
                 case 'INVALID_EMAIL':
                     errorMessage = "Invalid email"
+                    console.log("was herer")
                     break;
                 case 'MISSING_PASSWORD':
                     errorMessage = "Missing password"
