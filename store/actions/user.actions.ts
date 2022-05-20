@@ -45,8 +45,6 @@ export const signup = (email: string, password: string) => {
         if (!response.ok) {
             const data:any = await response.json();
             let errorMessage;
-            
-            console.log(data.error.message)
             switch(data.error.message){
                 case 'INVALID_EMAIL':
                     errorMessage = "Invalid email"

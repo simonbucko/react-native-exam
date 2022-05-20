@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { rehydrateUser, signup } from '../../store/actions/user.actions';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -8,6 +8,8 @@ import { StackParamList } from "../../typings/navigations";
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import {RootState} from "../../store"
+import globalStyles from "../../styles/global"
+import {InputWithLabel} from "../../components"
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -39,10 +41,11 @@ export default function SignupScreen() {
 
 
     return (
-        <View style={styles.container}>
-            <Text style={{fontFamily: 'Teko_400Regular'}}>Signup Screen</Text>
-            <TextInput value={email} placeholder="email" onChangeText={setEmail} />
-            <TextInput value={password} placeholder="password" onChangeText={setPassword} />
+        <View style={globalStyles.container}>
+            <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/s_logo.png")}/>
+            <Text style={{...globalStyles.text,...styles.title}}>Sign up to get access</Text>
+            <InputWithLabel label='E-MAIL' value={email} placeholder='example@student.cbs.dk' handleValueChange={setEmail}/>
+            <InputWithLabel label='PASSWORD' value={password} placeholder='**********' handleValueChange={setPassword} isPassword/>
             <Button title="Signup" onPress={() => dispatch(signup(email, password))} />
             {signupError && (
                 <Text>{signupError}</Text>
@@ -53,10 +56,12 @@ export default function SignupScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+    image:{
+        marginBottom: 20
     },
+    title:{
+        textAlign: "left",
+        width: "100%",
+        fontSize: 26
+    }
 })
