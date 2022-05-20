@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import { LOGOUT, REHYDRATE_USER, SIGNUP, LOGIN, SIGNUP_FAILED } from "../actions/user.actions";
+import { LOGOUT, REHYDRATE_USER, SIGNUP, LOGIN, SIGNUP_FAILED, CLEAR_ERRORS } from "../actions/user.actions";
 
 interface ReduxState {
     loggedInUser: User | null,
@@ -25,6 +25,8 @@ const userReducer = (state: ReduxState = initialState, action: any) => {
             return { ...state, loggedInUser: action.payload.user, idToken: action.payload.idToken }
         case SIGNUP_FAILED:
             return { ...state, signupError: action.payload }
+        case CLEAR_ERRORS:
+            return { ...state, signupError: null }
         default:
             return state;
     }

@@ -20,7 +20,6 @@ export default function SignupScreen() {
     const dispatch = useDispatch();
     const navigation = useNavigation<ScreenNavigationType>()
     const signupError = useSelector((state: RootState) => state.user.signupError)
-    console.log(signupError,"from components")
 
     async function readPersistedUserInfo() {
         const token = await SecureStore.getItemAsync('idToken');

@@ -9,6 +9,7 @@ export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 
 export const rehydrateUser = (user: User, idToken: string) => {
@@ -19,6 +20,10 @@ export const logout = () => {
     SecureStore.deleteItemAsync('idToken');
     SecureStore.deleteItemAsync('user');
     return { type: LOGOUT }
+}
+
+export const clearErrors = () => {
+    return { type: CLEAR_ERRORS }
 }
 
 export const signup = (email: string, password: string) => {
@@ -38,10 +43,18 @@ export const signup = (email: string, password: string) => {
 
         if (!response.ok) {
             const data:any = await response.json();
+            console.log(data)
             let errorMessage;
             switch(data.error.message){
                 case 'INVALID_EMAIL':
                     errorMessage = "Invalid email"
+                    break;
+                case 'MISSING_PASSWORD':
+                    errorMessage = "Missing password"
+                    break;
+                case 'WEAK_PASSWORD : Password should be at least 6 characters':
+                    errorMessage = "Password should be at least 6 characters"
+                    break;
                 default:
 
             }
@@ -55,6 +68,7 @@ export const signup = (email: string, password: string) => {
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
 
             dispatch({ type: SIGNUP, payload: { user, idToken: data.idToken } })
+            dispatch(clearErrors());
         }
     };
 };
