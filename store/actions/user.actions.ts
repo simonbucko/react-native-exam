@@ -27,9 +27,13 @@ export const clearErrors = () => {
     return { type: CLEAR_ERRORS }
 }
 
-export const signup = (email: string, password: string) => {
+export const signup = (email: string, password: string, confirmPassword: string) => {
     return async (dispatch: any, getState: any) => {
         //const token = getState().user.token; // if you have a reducer named user(from combineReducers) with a token variable​
+        if(password !== confirmPassword) {
+            dispatch({type: SIGNUP_FAILED, payload: "Passwords do not match"})
+            return
+        }
         const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${WEB_API_KEY}`, {
             method: 'POST',
             headers: {
