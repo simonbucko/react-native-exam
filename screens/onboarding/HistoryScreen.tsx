@@ -19,7 +19,7 @@ export default function HistoryScreen() {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        navigation.navigate("Signup");
+        navigation.replace("SignupScreen");
         dispatch(onboardingFinished())
     }
 

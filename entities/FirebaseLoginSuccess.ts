@@ -1,4 +1,4 @@
-export class FirebaseSignupSuccess {
+export class FirebaseLoginSuccess {
     //idToken	string	A Firebase Auth ID token for the newly created user.
     // email	string	The email for the newly created user.
     // refreshToken	string	A Firebase Auth refresh token for the newly created user.

@@ -7,7 +7,7 @@ import { RootState } from '../store';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SignupScreen from '../screens/SignupScreen';
+import {SignupScreen,LoginScreen} from '../screens/auth';
 import Screen1 from '../screens/Screen1';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
@@ -54,10 +54,6 @@ export default function Navigation() {
 
     return (
         <NavigationContainer>
-            {/* Move navigation related code to a seperate component that is used here */}
-            {/* Determine if the user is logged in and display:
-        A stack navigator (only) with signup and login
-        Our "normal" app with tabs navigation */}
             {user !== null ? (
                 // Show the app with all navigation
                 <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -67,9 +63,9 @@ export default function Navigation() {
                 </Tab.Navigator>
             ) : (
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    {!isOnboardingFinished && <Stack.Screen name="Onboarding" component={OnboardingNavigator} />}
-                    <Stack.Screen name="Signup" component={SignupScreen} />
-                    {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+                    {!isOnboardingFinished && <Stack.Screen name="OnboardingScreen" component={OnboardingNavigator} />}
+                    <Stack.Screen name="SignupScreen" component={SignupScreen} />
+                    <Stack.Screen name="LoginScreen" component={LoginScreen} />
                 </Stack.Navigator>
             )}
         </NavigationContainer>

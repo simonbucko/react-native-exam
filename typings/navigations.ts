@@ -2,12 +2,13 @@ export type StackParamList = {
     Screen1: undefined;
     Screen2: undefined;
     Screen3: undefined;
-    Signup: undefined;
     Profile: undefined;
+    SignupScreen: undefined;
+    LoginScreen: undefined;
     EditProfile: undefined;
     InitialScreen: undefined;
     EventsScreen: undefined;
     ChatScreen: undefined;
     HistoryScreen: undefined;
-    Onboarding: undefined;
+    OnboardingScreen: undefined;
 }

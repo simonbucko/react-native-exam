@@ -1,9 +1,12 @@
 import * as SecureStore from 'expo-secure-store';
 import { FirebaseSignupSuccess } from "../../entities/FirebaseSignupSuccess";
+import { FirebaseLoginSuccess } from "../../entities/FirebaseLoginSuccess";
 import { User } from '../../entities/User';
 
 
+
 export const SIGNUP = 'SIGNUP';
+export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
 
@@ -14,14 +17,12 @@ export const rehydrateUser = (user: User, idToken: string) => {
 export const logout = () => {
     SecureStore.deleteItemAsync('idToken');
     SecureStore.deleteItemAsync('user');
-
     return { type: LOGOUT }
 }
 
 export const signup = (email: string, password: string) => {
     return async (dispatch: any, getState: any) => {
         //const token = getState().user.token; // if you have a reducer named user(from combineReducers) with a token variable​
-
         const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.WEB_API_KEY}`, {
             method: 'POST',
             headers: {
@@ -46,6 +47,40 @@ export const signup = (email: string, password: string) => {
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
 
             dispatch({ type: SIGNUP, payload: { user, idToken: data.idToken } })
+        }
+    };
+};
+
+export const login = (email: string, password: string) => {
+    return async (dispatch: any, getState: any) => {
+        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDb3OgR2jqrHuAhKcnujdBwsttDJW11Li0`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                email: email,
+                password: password,
+                returnSecureToken: true
+            })
+        });
+
+        if (!response.ok) {
+            console.log("there was a problem")
+            const data:any = await response.json();
+            console.log(data)
+            console.log(process.env.WEB_API_KEY)
+            //There was a problem..
+            //dispatch({type: SIGNUP_FAILED, payload: 'something'})
+        } else {
+            const data: FirebaseLoginSuccess = await response.json(); 
+
+            const user = new User(data.email, '', '');
+
+            await SecureStore.setItemAsync('idToken', data.idToken);
+            await SecureStore.setItemAsync('user', JSON.stringify(user)); 
+
+            dispatch({ type: LOGIN, payload: { user, idToken: data.idToken } })
         }
     };
 };
