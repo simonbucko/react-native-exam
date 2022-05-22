@@ -62,6 +62,7 @@ export default function Navigation() {
                         name="Home" 
                         component={HomeScreen} 
                         options={{
+                            tabBarLabel: "HOME",
                             tabBarIcon: (tabInfo) => (<Ionicons name="home" size={24} color="black" />)
                         }} 
                         />
