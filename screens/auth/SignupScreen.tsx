@@ -1,16 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { HorizontalDivider, InputWithLabel, LargeButton } from "../../components";
+import { RootState } from "../../store";
 import { rehydrateUser, signup } from '../../store/actions/user.actions';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParamList } from "../../typings/navigations";
-import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import {RootState} from "../../store"
-import globalStyles from "../../styles/global"
-import {InputWithLabel, LargeButton, HorizontalDivider} from "../../components"
+import globalStyles from "../../styles/global";
 import Palette from '../../styles/pallete';
+import { StackParamList } from "../../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
