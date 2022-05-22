@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, Image, View } from 'react-native';
 import Palette from '../styles/pallete';
 import globalStyles from "../styles/global"
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const EventCard = ({item}:any) => {
     // console.log(item)
@@ -13,7 +15,14 @@ const EventCard = ({item}:any) => {
             <View style={styles.content}>
                 <Text style={styles.eventName}>{item.name}</Text>
                 <Text style={styles.eventOrganizator}>{item.organizator}</Text>
-                <Text style={styles.eventName}>{item.name}</Text>
+                <View style={styles.wrapper}>
+                    <MaterialCommunityIcons name="clock-time-four" size={12} color="white" />
+                    <Text style={styles.time}>{item.time.day}, {item.time.date}.{item.time.month} {" "} {item.time.from} - {item.time.to}</Text>
+                </View>
+                <View style={styles.wrapper}>
+                    <MaterialIcons name="location-on" size={12} color="white" />
+                    <Text style={styles.location}>{item.location.street}, {item.location.postCode} {item.location.city}</Text>
+                </View>
             </View>
         </View>
     );
@@ -57,6 +66,22 @@ const styles = StyleSheet.create({
     eventOrganizator: {
         color: Palette.bright,
         fontSize: 12,
+        fontWeight: "bold",
+        marginBottom: 4
+    },
+    wrapper:{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    time: {
+        color: Palette.bright,
+        marginLeft: 12,
+        fontWeight: "bold"
+    },
+    location: {
+        color: Palette.bright,
+        marginLeft: 12,
     }
 })
 
