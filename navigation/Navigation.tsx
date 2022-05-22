@@ -92,7 +92,9 @@ export default function Navigation() {
                             tabBarLabel: "CHAT",
                             tabBarIcon: (tabInfo) => (<Entypo name="chat" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
                             tabBarActiveTintColor: Palette.primary,
-                            tabBarLabelStyle: styles.label
+                            tabBarLabelStyle: styles.label,
+                            headerTitle: "CHAT",
+                            headerTitleStyle: {...styles.screenTitle}
                         }}
                         />
                     <Tab.Screen
@@ -102,7 +104,9 @@ export default function Navigation() {
                             tabBarLabel: "MENU",
                             tabBarIcon: (tabInfo) => (<Entypo name="menu" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
                             tabBarActiveTintColor: Palette.primary,
-                            tabBarLabelStyle: styles.label
+                            tabBarLabelStyle: styles.label,
+                            headerTitle: "MENU",
+                            headerTitleStyle: {...styles.screenTitle}
                         }}
                         />
                 </Tab.Navigator>
