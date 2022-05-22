@@ -1,5 +1,5 @@
 export class Event {
-    constructor(public name: string, public organizator:string,
+    constructor(public name: string, public organizator:string, public imageUrl: string,
         public time: ITime, public location: ILocation, public id?: string) { }
 }
 

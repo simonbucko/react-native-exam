@@ -25,7 +25,7 @@ export const fetchEvents = () => {
             let events: Event[] = []
             for (const key in data) {
                 const obj = data[key];
-                events.push(new Event(obj.name, obj.organizator, obj.time, obj.location, key))
+                events.push(new Event(obj.name, obj.organizator, obj.imageUrl, obj.time, obj.location, key))
             }
 
             // console.log("events", events);

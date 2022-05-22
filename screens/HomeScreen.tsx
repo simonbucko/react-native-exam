@@ -7,6 +7,7 @@ import globalStyles from '../styles/global';
 import Palette from '../styles/pallete';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
+import {EventCard} from "../components"
 
 const renderChatroom = ({ item }: { item: any }) => (
     <Text>{item.name}</Text>
@@ -27,7 +28,7 @@ export default function HomeScreen() {
         <View style={globalStyles.mainScreenContainer}>
             <FlatList
                 data={events}
-                renderItem={renderChatroom}
+                renderItem={EventCard}
             />
             
         </View>
