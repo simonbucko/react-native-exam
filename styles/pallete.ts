@@ -6,6 +6,7 @@ enum Palette {
     light_gray = "#00000026",
     gray = "#707070",
     secondary = "#FFBA00",
+    error= "#B10024"
 }
 
 export default Palette;

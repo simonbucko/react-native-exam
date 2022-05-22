@@ -52,15 +52,21 @@ export default function SignupScreen() {
                 <InputWithLabel label='PASSWORD' value={password} placeholder='**********' handleValueChange={setPassword} isPassword/>
                 <HorizontalDivider/>
                 <InputWithLabel label='REPEAT PASSWORD' value={confirmPassword} placeholder='**********' handleValueChange={setConfirmPassword} isPassword/>
+                {signupError && (
+                    <View>
+                        <HorizontalDivider/>
+                        <View style={styles.errorWrapper}>
+                            <Image progressiveRenderingEnabled={true} source={require("../../assets/pics/error.png")}/>
+                            <Text style={styles.errorText}>{signupError}</Text>
+                        </View>
+                    </View>
+                    
+                )}
             </View>
             <LargeButton 
                 text="Get access" 
                 handleOnClick={() => dispatch(signup(email, password,confirmPassword))} 
                 disabled={email === "" || password === "" || confirmPassword === ""}/>
-            {signupError && (
-                <Text>{signupError}</Text>
-            )}
-            {/* <Button title="Already have a user? Log in" onPress={() => navigation.navigate("LoginScreen")} /> */}
             <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("LoginScreen")}>
                 <View style={styles.linkToLoginWrapper}>
                     <Text style={styles.linkToLogin}>Already have a user? </Text>
@@ -99,5 +105,16 @@ const styles = StyleSheet.create({
     },
     boldText:{
         fontWeight: 'bold'
+    },
+    errorWrapper:{
+        display: 'flex',
+        flexDirection: "row",
+        paddingVertical: 16,
+        width: "100%",
+        justifyContent: "center"
+    },
+    errorText:{
+        color: Palette.error,
+        marginLeft: 13
     }
 })
