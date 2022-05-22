@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
@@ -14,6 +15,9 @@ import Screen3 from '../screens/Screen3';
 import { StackParamList } from "../typings/navigations";
 import { InitialScreen,EventsScreen,ChatScreen, HistoryScreen } from '../screens/onboarding';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Entypo } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
+import Palette from '../styles/pallete';
 
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -57,17 +61,47 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             {user !== null ? (
-                <Tab.Navigator screenOptions={{ headerShown: false }} >
+                <Tab.Navigator screenOptions={{ headerShown: false }} defaultScreenOptions={{tabBarStyle: {backgroundColor: "red"}, tabBarItemStyle: styles.tabbar}}>
                     <Tab.Screen 
                         name="Home" 
                         component={HomeScreen} 
                         options={{
                             tabBarLabel: "HOME",
-                            tabBarIcon: (tabInfo) => (<Ionicons name="home" size={24} color="black" />)
+                            tabBarIcon: (tabInfo) => (<Entypo name="home" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
+                            tabBarActiveTintColor: Palette.primary,
+                            tabBarLabelStyle: styles.label,
                         }} 
                         />
-                    <Tab.Screen name="Chat" component={ChatStackNavigator} />
-                    <Tab.Screen name="Menu" component={ProfileStackNavigator} />
+                    <Tab.Screen 
+                        name="Discover" 
+                        component={ChatStackNavigator} 
+                        options={{
+                            tabBarLabel: "DISCOVER",
+                            tabBarIcon: (tabInfo) => (<FontAwesome name="search" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
+                            tabBarActiveTintColor: Palette.primary,
+                            tabBarLabelStyle: styles.label,
+                        }}
+                        />
+                    <Tab.Screen 
+                        name="Chat" 
+                        component={ChatStackNavigator} 
+                        options={{
+                            tabBarLabel: "CHAT",
+                            tabBarIcon: (tabInfo) => (<Entypo name="chat" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
+                            tabBarActiveTintColor: Palette.primary,
+                            tabBarLabelStyle: styles.label
+                        }}
+                        />
+                    <Tab.Screen
+                        name="Menu" 
+                        component={ProfileStackNavigator} 
+                        options={{
+                            tabBarLabel: "MENU",
+                            tabBarIcon: (tabInfo) => (<Entypo name="menu" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
+                            tabBarActiveTintColor: Palette.primary,
+                            tabBarLabelStyle: styles.label
+                        }}
+                        />
                 </Tab.Navigator>
             ) : (
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -79,3 +113,13 @@ export default function Navigation() {
         </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    tabbar: {
+        backgroundColor: "red"
+    },
+    label: {
+        fontFamily: 'Teko_500Medium',
+        fontSize: 16
+    }
+})
