@@ -14,7 +14,6 @@ import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import { StackParamList } from "../typings/navigations";
 import { InitialScreen,EventsScreen,ChatScreen, HistoryScreen } from '../screens/onboarding';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 import Palette from '../styles/pallete';
