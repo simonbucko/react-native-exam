@@ -13,6 +13,8 @@ import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import { StackParamList } from "../typings/navigations";
 import { InitialScreen,EventsScreen,ChatScreen, HistoryScreen } from '../screens/onboarding';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -55,9 +57,14 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             {user !== null ? (
-                // Show the app with all navigation
-                <Tab.Navigator screenOptions={{ headerShown: false }}>
-                    <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Navigator screenOptions={{ headerShown: false }} >
+                    <Tab.Screen 
+                        name="Home" 
+                        component={HomeScreen} 
+                        options={{
+                            tabBarIcon: (tabInfo) => (<Ionicons name="home" size={24} color="black" />)
+                        }} 
+                        />
                     <Tab.Screen name="Chat" component={ChatStackNavigator} />
                     <Tab.Screen name="Menu" component={ProfileStackNavigator} />
                 </Tab.Navigator>
