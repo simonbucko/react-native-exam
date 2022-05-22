@@ -60,7 +60,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             {user !== null ? (
-                <Tab.Navigator screenOptions={{ headerShown: false }} defaultScreenOptions={{tabBarStyle: {backgroundColor: "red"}, tabBarItemStyle: styles.tabbar}}>
+                <Tab.Navigator screenOptions={{ headerShown: true }}>
                     <Tab.Screen 
                         name="Home" 
                         component={HomeScreen} 
@@ -69,6 +69,8 @@ export default function Navigation() {
                             tabBarIcon: (tabInfo) => (<Entypo name="home" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
                             tabBarActiveTintColor: Palette.primary,
                             tabBarLabelStyle: styles.label,
+                            headerTitle: "FEED",
+                            headerTitleStyle: {...styles.screenTitle}
                         }} 
                         />
                     <Tab.Screen 
@@ -79,6 +81,8 @@ export default function Navigation() {
                             tabBarIcon: (tabInfo) => (<FontAwesome name="search" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
                             tabBarActiveTintColor: Palette.primary,
                             tabBarLabelStyle: styles.label,
+                            headerTitle: "DISCOVER",
+                            headerTitleStyle: {...styles.screenTitle}
                         }}
                         />
                     <Tab.Screen 
@@ -114,8 +118,10 @@ export default function Navigation() {
 }
 
 const styles = StyleSheet.create({
-    tabbar: {
-        backgroundColor: "red"
+    screenTitle:{
+        color: Palette.primary,
+        fontFamily: 'Teko_500Medium',
+        fontSize: 26
     },
     label: {
         fontFamily: 'Teko_500Medium',

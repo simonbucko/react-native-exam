@@ -9,6 +9,13 @@ const globalStyles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20
     },
+    mainScreenContainer:{
+        flex: 1,
+        backgroundColor: Palette.background_gray,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: 20
+    },
     text: {
         fontFamily: 'Teko_400Regular',
         color: Palette.text_primary,
