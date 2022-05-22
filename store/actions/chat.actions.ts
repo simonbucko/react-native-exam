@@ -1,8 +1,6 @@
 import { Chatroom } from "../../entities/Chatroom";
 import { API_URL } from "../../variables";
 
-// https://cbscs-7a227-default-rtdb.europe-west1.firebasedatabase.app
-
 export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
 export const ADD_CHATROOM = 'ADD_CHATROOM';
 export const FETCH_CHATROOMS = 'FETCH_CHATROOMS';
@@ -42,7 +40,7 @@ export const fetchChatrooms = () => {
             // console.log("data from server", data);
             //chatroom.id = data.name;
 
-            dispatch({ type: 'FETCH_CHATROOMS', payload: chatrooms })
+            dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }
     };
 }
