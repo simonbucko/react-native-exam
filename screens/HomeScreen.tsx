@@ -29,6 +29,7 @@ export default function HomeScreen() {
             <FlatList
                 data={events}
                 renderItem={EventCard}
+                style={styles.list}
             />
             
         </View>
@@ -36,4 +37,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+    list:{
+        width: "100%"
+    }
 })
