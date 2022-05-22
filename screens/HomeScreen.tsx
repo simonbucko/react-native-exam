@@ -9,15 +9,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import {EventCard} from "../components"
 
-const renderChatroom = ({ item }: { item: any }) => (
-    <Text>{item.name}</Text>
-);
-
-
 export default function HomeScreen() {
     const dispatch = useDispatch();
     const events: Event[] = useSelector((state: RootState) => state.events.events);
-    console.log(events)
 
     useEffect(() => {
       dispatch(fetchEvents())    
@@ -38,6 +32,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
     list:{
-        width: "100%"
+        width: "100%",
+        paddingTop: 32
     }
 })

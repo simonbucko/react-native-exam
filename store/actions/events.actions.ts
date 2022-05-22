@@ -28,7 +28,6 @@ export const fetchEvents = () => {
                 events.push(new Event(obj.name, obj.organizator, obj.imageUrl, obj.time, obj.location, key))
             }
 
-            // console.log("events", events);
             dispatch({ type: FETCH_EVENTS, payload: events })
         }
     };
