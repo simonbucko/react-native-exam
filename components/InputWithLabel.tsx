@@ -15,7 +15,7 @@ interface IInputWithLabel {
 const InputWithLabel = ({ label,value,handleValueChange, placeholder, isPassword = false }:IInputWithLabel) => {
     return (
         <View style={styles.container}>
-            <Text>{label}</Text>
+            <Text style={styles.label}>{label}</Text>
             <TextInput style={styles.input} value={value} placeholder={placeholder} onChangeText={(input) => handleValueChange(input)} secureTextEntry={isPassword} placeholderTextColor={Palette.light_gray}/>
         </View>
     );
@@ -29,6 +29,13 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 16,
         paddingVertical: 10,
+        color: Palette.text_primary
+    },
+    label:{
+        color: Palette.text_primary,
+        paddingTop: 10,
+        fontSize: 12,
+        fontWeight: 'bold'
     }
 })
 

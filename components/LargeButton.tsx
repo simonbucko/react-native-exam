@@ -27,7 +27,7 @@ const LargeButton = ({ text,handleOnClick,disabled }:ILargeButton) => {
 
     return (
         <TouchableOpacity activeOpacity={1} style={styles.button} onPress={() => handleOnClick()} disabled={disabled}>
-            <Text style={{...globalStyles.text,...styles.text}}>{text}</Text>
+            <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     );
 }

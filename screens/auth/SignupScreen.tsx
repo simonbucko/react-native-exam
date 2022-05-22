@@ -9,7 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import {RootState} from "../../store"
 import globalStyles from "../../styles/global"
-import {InputWithLabel, LargeButton} from "../../components"
+import {InputWithLabel, LargeButton, HorizontalDivider} from "../../components"
+import Palette from '../../styles/pallete';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -45,10 +46,13 @@ export default function SignupScreen() {
         <View style={globalStyles.container}>
             <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/s_logo.png")}/>
             <Text style={{...globalStyles.text,...styles.title}}>Sign up to get access</Text>
-            <InputWithLabel label='E-MAIL' value={email} placeholder='example@student.cbs.dk' handleValueChange={setEmail}/>
-            <InputWithLabel label='PASSWORD' value={password} placeholder='**********' handleValueChange={setPassword} isPassword/>
-            <InputWithLabel label='REPEAT PASSWORD' value={confirmPassword} placeholder='**********' handleValueChange={setConfirmPassword} isPassword/>
-            {/* <Button title="Signup" onPress={() => dispatch(signup(email, password))} /> */}
+            <View style={styles.inputsWrapper}>
+                <InputWithLabel label='E-MAIL' value={email} placeholder='example@student.cbs.dk' handleValueChange={setEmail}/>
+                <HorizontalDivider/>
+                <InputWithLabel label='PASSWORD' value={password} placeholder='**********' handleValueChange={setPassword} isPassword/>
+                <HorizontalDivider/>
+                <InputWithLabel label='REPEAT PASSWORD' value={confirmPassword} placeholder='**********' handleValueChange={setConfirmPassword} isPassword/>
+            </View>
             <LargeButton 
                 text="Get access" 
                 handleOnClick={() => dispatch(signup(email, password,confirmPassword))} 
@@ -58,7 +62,10 @@ export default function SignupScreen() {
             )}
             {/* <Button title="Already have a user? Log in" onPress={() => navigation.navigate("LoginScreen")} /> */}
             <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("LoginScreen")}>
-                <Text>Already have a user? <b>Log in</b></Text>
+                <View style={styles.linkToLoginWrapper}>
+                    <Text style={styles.linkToLogin}>Already have a user? </Text>
+                    <Text style={[styles.linkToLogin,styles.boldText]}>Log in</Text>
+                </View>
             </TouchableOpacity>
         </View>
     );
@@ -73,7 +80,24 @@ const styles = StyleSheet.create({
         width: "100%",
         fontSize: 26
     },
+    inputsWrapper:{
+        width: "100%",
+        borderWidth: 1,
+        borderColor: Palette.light_gray,
+        borderRadius: 5,
+        marginBottom: 30,
+        marginTop: 22
+    },
+    linkToLoginWrapper:{
+        display: "flex",
+        flexDirection: 'row',
+        marginTop: 36
+    },
     linkToLogin:{
-        fontSize: 12
+        fontSize: 12,
+        color: Palette.primary,
+    },
+    boldText:{
+        fontWeight: 'bold'
     }
 })
