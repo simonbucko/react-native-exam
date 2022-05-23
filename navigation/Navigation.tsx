@@ -61,7 +61,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             {user !== null ? (
-                <Tab.Navigator screenOptions={{ headerShown: true }}>
+                <Tab.Navigator screenOptions={{ headerShown: true, tabBarStyle: {height: 100} }}>
                     <Tab.Screen 
                         name="Home" 
                         component={HomeScreen} 

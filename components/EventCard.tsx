@@ -6,7 +6,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const EventCard = ({item}:any) => {
-    // console.log(item)
 
     return (
         <View style={styles.card}>

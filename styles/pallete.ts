@@ -7,7 +7,8 @@ enum Palette {
     gray = "#707070",
     secondary = "#FFBA00",
     error= "#B10024",
-    background_gray = "#F5F5F5"
+    background_gray = "#F5F5F5",
+    success = "#07936B"
 }
 
 export default Palette;
