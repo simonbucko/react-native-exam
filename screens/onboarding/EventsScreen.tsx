@@ -17,7 +17,7 @@ export default function EventsScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
 
     const handleClick = () => {
-        navigation.navigate("ChatScreen")
+        navigation.navigate("OnboardingChatScreen")
     }
 
     return (

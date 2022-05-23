@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ChatScreen from '../screens/ChatScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {SignupScreen,LoginScreen} from '../screens/auth';
@@ -14,7 +15,7 @@ import Screen1 from '../screens/Screen1';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
 import { StackParamList } from "../typings/navigations";
-import { InitialScreen,EventsScreen,ChatScreen, HistoryScreen } from '../screens/onboarding';
+import { InitialScreen,EventsScreen,OnboardingChatScreen, HistoryScreen } from '../screens/onboarding';
 import { Entypo } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 import Palette from '../styles/pallete';
@@ -47,7 +48,7 @@ function OnboardingNavigator() {
         <Stack.Navigator screenOptions={{headerBackTitleVisible:false, headerTitle:""}} >
             <Stack.Screen name="InitialScreen" component={InitialScreen}/>
             <Stack.Screen name="EventsScreen" component={EventsScreen} />
-            <Stack.Screen name="ChatScreen" component={ChatScreen} />
+            <Stack.Screen name="OnboardingChatScreen" component={OnboardingChatScreen} />
             <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>
     )
@@ -88,7 +89,7 @@ export default function Navigation() {
                         />
                     <Tab.Screen 
                         name="Chat" 
-                        component={ChatStackNavigator} 
+                        component={ChatScreen} 
                         options={{
                             tabBarLabel: "CHAT",
                             tabBarIcon: (tabInfo) => (<Entypo name="chat" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),

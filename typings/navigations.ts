@@ -8,6 +8,7 @@ export type StackParamList = {
     EditProfile: undefined;
     InitialScreen: undefined;
     EventsScreen: undefined;
+    OnboardingChatScreen: undefined;
     ChatScreen: undefined;
     HistoryScreen: undefined;
     OnboardingScreen: undefined;
