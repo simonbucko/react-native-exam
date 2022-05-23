@@ -8,13 +8,14 @@ interface IInputWithLabel {
     value:string,
     placeholder:string,
     isPassword?:boolean,
-    handleValueChange: Function
+    handleValueChange: Function,
+    style?: any
 }
 
 
-const InputWithLabel = ({ label,value,handleValueChange, placeholder, isPassword = false }:IInputWithLabel) => {
+const InputWithLabel = ({ label,value,handleValueChange, placeholder, isPassword = false,style }:IInputWithLabel) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,style]}>
             <Text style={styles.label}>{label}</Text>
             <TextInput style={styles.input} value={value} placeholder={placeholder} onChangeText={(input) => handleValueChange(input)} secureTextEntry={isPassword} placeholderTextColor={Palette.light_gray}/>
         </View>

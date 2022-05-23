@@ -6,11 +6,12 @@ import globalStyles from "../styles/global"
 interface ILargeButton {
     text:string,
     handleOnClick:Function,
-    disabled?:boolean
+    disabled?:boolean,
+    style?:any
 }
 
 
-const LargeButton = ({ text,handleOnClick,disabled }:ILargeButton) => {
+const LargeButton = ({ text,handleOnClick,disabled,style }:ILargeButton) => {
     const styles = StyleSheet.create({
         button:{
             backgroundColor: Palette.primary,
@@ -26,7 +27,7 @@ const LargeButton = ({ text,handleOnClick,disabled }:ILargeButton) => {
     })
 
     return (
-        <TouchableOpacity activeOpacity={1} style={styles.button} onPress={() => handleOnClick()} disabled={disabled}>
+        <TouchableOpacity activeOpacity={1} style={[styles.button,style]} onPress={() => handleOnClick()} disabled={disabled}>
             <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     );

@@ -1,46 +1,34 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import Input from '../../components/Input';
+import { InputWithLabel, LargeButton } from '../../components';
 import { User } from '../../entities/User';
+import { RootState } from '../../store';
 import globalStyles from '../../styles/global';
+import Palette from '../../styles/pallete';
 
 export default function EditProfileScreen() {
     const user: User = useSelector((state: RootState) => state.user.loggedInUser);
-    const [textEmail, setTextEmail] = useState(user.email)
-    // console.log(user.email);
+    const [name, setName] = useState("")
+    const [studyProgramme, setStudyProgramme] = useState("")
 
-    const onSave = () => {
-        if (textEmail !== ''  /* && other inputs are not empty */) {
-            // save the data to the server
-        } else {
-            //Show error message
-        }
-    }
 
     return (
         <View style={globalStyles.mainScreenContainer}>
-            <Text>Edit Profile Screen</Text>
-            <Input title="What is your email?"
-                inputValue={textEmail}
-                setText={setTextEmail}
-                error="Email cannot be empty"
-            />
-            {/* <Input title="Study programme"
-                inputValue=""
-                error="Study programme cannot be empty" /> */}
-
-            <Button title="Save" onPress={() => console.log("hi")} />
+            <InputWithLabel label='WHAT IS YOUR NAME?' value={name} handleValueChange={setName} placeholder={"John Wick"} style={styles.input}/>
+            <InputWithLabel label='STUDY PROGRAMME' value={studyProgramme} handleValueChange={setStudyProgramme} placeholder={"Business"} style={styles.input}/>
+            <LargeButton text='Save Changes' disabled={name === "" || studyProgramme === ""} handleOnClick={() => console.log("clicked")} style={styles.button}/>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+    input: {
+        backgroundColor: Palette.bright,
+        borderRadius: 5,
+        marginTop: 24
     },
+    button:{
+        marginTop: 24 
+    }
 })
