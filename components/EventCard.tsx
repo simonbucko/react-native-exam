@@ -1,9 +1,7 @@
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Palette from '../styles/pallete';
-import globalStyles from "../styles/global"
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 
 const EventCard = ({item}:any) => {
 

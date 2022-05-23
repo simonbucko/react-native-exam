@@ -1,6 +1,5 @@
-import { FontAwesome } from '@expo/vector-icons';
-import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import globalStyles from '../styles/global';
 import Palette from '../styles/pallete';
 
