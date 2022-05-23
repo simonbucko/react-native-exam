@@ -11,4 +11,5 @@ export type StackParamList = {
     ChatScreen: undefined;
     HistoryScreen: undefined;
     OnboardingScreen: undefined;
+    DiscoverScreen: undefined;
 }

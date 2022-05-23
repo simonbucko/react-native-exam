@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
+import DiscoverScreen from '../screens/DiscoverScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {SignupScreen,LoginScreen} from '../screens/auth';
 import Screen1 from '../screens/Screen1';
@@ -75,7 +76,7 @@ export default function Navigation() {
                         />
                     <Tab.Screen 
                         name="Discover" 
-                        component={ChatStackNavigator} 
+                        component={DiscoverScreen} 
                         options={{
                             tabBarLabel: "DISCOVER",
                             tabBarIcon: (tabInfo) => (<FontAwesome name="search" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
