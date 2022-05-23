@@ -5,15 +5,11 @@ import { StyleSheet } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import {SignupScreen,LoginScreen} from '../screens/auth';
-import Screen1 from '../screens/Screen1';
-import Screen2 from '../screens/Screen2';
-import Screen3 from '../screens/Screen3';
+import {ProfileScreen,EditProfileScreen} from '../screens/profile';
 import { StackParamList } from "../typings/navigations";
 import { InitialScreen,EventsScreen,OnboardingChatScreen, HistoryScreen } from '../screens/onboarding';
 import { Entypo } from '@expo/vector-icons'; 
@@ -24,21 +20,27 @@ import Palette from '../styles/pallete';
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
-function ChatStackNavigator() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Screen1" component={Screen1} />
-            <Stack.Screen name="Screen2" component={Screen2} />
-            <Stack.Screen name="Screen3" component={Screen3} />
-        </Stack.Navigator>
-    );
-}
 
 function ProfileStackNavigator() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+            <Stack.Screen 
+                name="Profile" 
+                component={ProfileScreen} 
+                options={{
+                    headerTitle: "MENU",
+                    headerTitleStyle: {...styles.screenTitle}
+                }}
+                />
+            <Stack.Screen 
+                name="EditProfile" 
+                component={EditProfileScreen} 
+                options={{
+                    headerTitle: "EDIT PROFILE",
+                    headerTitleStyle: {...styles.screenTitle},
+                    headerBackTitle: ""
+                }}
+                />
         </Stack.Navigator>
     )
 }
@@ -108,7 +110,8 @@ export default function Navigation() {
                             tabBarActiveTintColor: Palette.primary,
                             tabBarLabelStyle: styles.label,
                             headerTitle: "MENU",
-                            headerTitleStyle: {...styles.screenTitle}
+                            headerTitleStyle: {...styles.screenTitle},
+                            headerShown: false
                         }}
                         />
                 </Tab.Navigator>

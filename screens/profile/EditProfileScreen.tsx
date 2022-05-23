@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import Input from '../components/Input';
-import { User } from '../entities/User';
+import { RootState } from '../../store';
+import Input from '../../components/Input';
+import { User } from '../../entities/User';
+import globalStyles from '../../styles/global';
 
 export default function EditProfileScreen() {
     const user: User = useSelector((state: RootState) => state.user.loggedInUser);
@@ -19,7 +20,7 @@ export default function EditProfileScreen() {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.mainScreenContainer}>
             <Text>Edit Profile Screen</Text>
             <Input title="What is your email?"
                 inputValue={textEmail}
