@@ -172,11 +172,7 @@ export const updateUserProfile = (displayName: string, studyProgram: string) => 
 
         if (!response.ok) {
             console.log("some error occured while updating user")
-        } else {
-            const data: any = await response.json();   
-            console.log("success")
-            console.log(studyProgram)
-            console.log(data)
+        } else { 
             const user = {...olduser, displayName,studyProgram}
             dispatch({type:UPDATE_USER, payload:user})
             await SecureStore.setItemAsync('user', JSON.stringify(user));

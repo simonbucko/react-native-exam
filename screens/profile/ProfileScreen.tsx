@@ -19,9 +19,6 @@ export default function ProfileScreen() {
     const displayName: string = useSelector((state: RootState) => state.user.loggedInUser.displayName);
     const studyProgram: string = useSelector((state: RootState) => state.user.loggedInUser.studyProgram);
 
-    console.log("displayName", displayName)
-    console.log("studyProgram", studyProgram)
-
     return (
         <View style={[globalStyles.mainScreenContainer,styles.container]}>
             <View style={styles.topSection}>
