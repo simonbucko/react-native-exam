@@ -143,7 +143,7 @@ export const login = (email: string, password: string) => {
             //tu by bolo dobre urobit ten isty check if OK 
             const userData = await userResponse.json();
             
-            const user = new User(data.localId, data.email, userData.displayName, userData.studyProgram,'');
+            const user = new User(data.localId, data.email, userData?.displayName, userData?.studyProgram,'');
             
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
