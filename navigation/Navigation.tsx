@@ -150,7 +150,8 @@ export default function Navigation() {
                 </Tab.Navigator>
             ) : (
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    {!isOnboardingFinished && <Stack.Screen name="OnboardingScreen" component={OnboardingNavigator} />}
+                    {/* {true && <Stack.Screen name="OnboardingScreen" component={OnboardingNavigator} />} */}
+                    {(!isOnboardingFinished) && <Stack.Screen name="OnboardingScreen" component={OnboardingNavigator} />}
                     <Stack.Screen name="SignupScreen" component={SignupScreen} />
                     <Stack.Screen name="LoginScreen" component={LoginScreen} />
                 </Stack.Navigator>

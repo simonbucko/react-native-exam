@@ -16,8 +16,11 @@ export default function ProfileScreen() {
     const dispatch = useDispatch();
     const email: string = useSelector((state: RootState) => state.user.loggedInUser.email);
     const localId: string = useSelector((state: RootState) => state.user.loggedInUser.localId);
-    const displyName: string = useSelector((state: RootState) => state.user.loggedInUser.displyName);
+    const displayName: string = useSelector((state: RootState) => state.user.loggedInUser.displayName);
     const studyProgram: string = useSelector((state: RootState) => state.user.loggedInUser.studyProgram);
+
+    console.log("displayName", displayName)
+    console.log("studyProgram", studyProgram)
 
     return (
         <View style={[globalStyles.mainScreenContainer,styles.container]}>
@@ -25,10 +28,10 @@ export default function ProfileScreen() {
                 <View style={styles.profileSectionWrapper}>
                     <Image style={styles.image} progressiveRenderingEnabled={true} source={require("../../assets/pics/anonymProfile.jpg")}/>
                     <View style={styles.profileInfoWrapper}>
-                        <Text style={styles.name}>Simon Bucko</Text>
+                        <Text style={styles.name}>{displayName !== "" ? displayName : "[Display Name]"}</Text>
                         <Text style={styles.email}>{email}</Text>
-                        <Text style={styles.email}>{localId}</Text>
-                        <Text style={styles.program}>Keas tusok</Text>
+                        {/* <Text style={styles.email}>{localId}</Text> */}
+                        <Text style={styles.program}>{studyProgram !== "" ? studyProgram : "[Study Program]"}</Text>
                     </View>
                 </View>
                 <TouchableOpacity activeOpacity={1} style={styles.editButton} onPress={() => navigation.navigate("EditProfile")}>

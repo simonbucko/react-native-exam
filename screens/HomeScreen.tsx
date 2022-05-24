@@ -1,15 +1,13 @@
-import React, {useEffect} from 'react';
-import { Button, StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { Event } from '../entities/Event';
-import { fetchEvents } from '../store/actions/events.actions';
-import { fetchBlogs } from '../store/actions/blogs.actions';
-import globalStyles from '../styles/global';
-import Palette from '../styles/pallete';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import {EventCard, BlogCard} from "../components"
+import React, { useEffect } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { BlogCard, EventCard } from "../components";
 import { Blog } from '../entities/Blog';
+import { Event } from '../entities/Event';
+import { RootState } from '../store';
+import { fetchBlogs } from '../store/actions/blogs.actions';
+import { fetchEvents } from '../store/actions/events.actions';
+import globalStyles from '../styles/global';
 
 export default function HomeScreen() {
     const dispatch = useDispatch();
@@ -33,27 +31,11 @@ export default function HomeScreen() {
                         <BlogCard item={item} key={key}/>
                     ))}
                 </ScrollView>
-            
-
-            {/* <FlatList
-                data={events}
-                renderItem={EventCard}
-                style={styles.list}
-            />
-            <FlatList
-                data={blogs}
-                renderItem={BlogCard}
-                style={styles.list}
-            /> */}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    list:{
-        width: "100%",
-        paddingTop: 32
-    },
     scrollable:{
         width: "100%",
         height: "100%",

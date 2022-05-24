@@ -7,6 +7,7 @@ import { WEB_API_KEY, API_URL } from '../../variables';
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -152,3 +153,35 @@ export const login = (email: string, password: string) => {
         }
     };
 };
+
+export const updateUserProfile = (displayName: string, studyProgram: string) => {
+    return async (dispatch: any, getState: any) => {
+        const localId = getState().user.loggedInUser.localId;
+        const olduser = getState().user.loggedInUser;
+        const response = await fetch(
+            `${API_URL}/users/${localId}.json`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                displayName,
+                studyProgram
+            })
+        });
+
+        if (!response.ok) {
+            console.log("some error occured while updating user")
+        } else {
+            const data: any = await response.json();   
+            console.log("success")
+            console.log(studyProgram)
+            console.log(data)
+            const user = {...olduser, displayName,studyProgram}
+            dispatch({type:UPDATE_USER, payload:user})
+            await SecureStore.setItemAsync('user', JSON.stringify(user));
+        }
+    };
+};
+
+
