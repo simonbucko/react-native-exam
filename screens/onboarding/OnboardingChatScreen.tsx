@@ -10,10 +10,10 @@ import Palette from '../../styles/pallete';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
-    "ChatScreen"
+    "OnboardingChatScreen"
 >
 
-export default function ChatScreen() {
+export default function OnboardingChatScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
 
     const handleClick = () => {

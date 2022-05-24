@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
-import DiscoverScreen from '../screens/DiscoverScreen';
+import {DiscoverScreen,EventsScreen} from '../screens/discover';
 import {SignupScreen,LoginScreen} from '../screens/auth';
 import {ProfileScreen,EditProfileScreen} from '../screens/profile';
 import { StackParamList } from "../typings/navigations";
-import { InitialScreen,EventsScreen,OnboardingChatScreen, HistoryScreen } from '../screens/onboarding';
+import { InitialScreen,OnboardingEventsScreen,OnboardingChatScreen, HistoryScreen } from '../screens/onboarding';
 import { Entypo } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
 import Palette from '../styles/pallete';
@@ -20,6 +20,29 @@ import Palette from '../styles/pallete';
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
+function DiscoverStackNavigator() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen 
+                name="DiscoverScreen" 
+                component={DiscoverScreen} 
+                options={{
+                    headerTitle: "DISCOVER",
+                    headerTitleStyle: {...styles.screenTitle}
+                }}
+                />
+            <Stack.Screen 
+                name="EventsScreen" 
+                component={EventsScreen} 
+                options={{
+                    headerTitle: "EVENTS",
+                    headerTitleStyle: {...styles.screenTitle},
+                    headerBackTitle: ""
+                }}
+                />
+        </Stack.Navigator>
+    )
+}
 
 function ProfileStackNavigator() {
     return (
@@ -49,7 +72,7 @@ function OnboardingNavigator() {
     return (
         <Stack.Navigator screenOptions={{headerBackTitleVisible:false, headerTitle:""}} >
             <Stack.Screen name="InitialScreen" component={InitialScreen}/>
-            <Stack.Screen name="EventsScreen" component={EventsScreen} />
+            <Stack.Screen name="OnboardingEventsScreen" component={OnboardingEventsScreen} />
             <Stack.Screen name="OnboardingChatScreen" component={OnboardingChatScreen} />
             <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
         </Stack.Navigator>
@@ -79,14 +102,15 @@ export default function Navigation() {
                         />
                     <Tab.Screen 
                         name="Discover" 
-                        component={DiscoverScreen} 
+                        component={DiscoverStackNavigator} 
                         options={{
                             tabBarLabel: "DISCOVER",
                             tabBarIcon: (tabInfo) => (<FontAwesome name="search" size={24} color={tabInfo.focused ? Palette.primary : Palette.gray} />),
                             tabBarActiveTintColor: Palette.primary,
                             tabBarLabelStyle: styles.label,
                             headerTitle: "DISCOVER",
-                            headerTitleStyle: {...styles.screenTitle}
+                            headerTitleStyle: {...styles.screenTitle},
+                            headerShown: false
                         }}
                         />
                     <Tab.Screen 

@@ -10,10 +10,10 @@ import Palette from '../../styles/pallete';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
-    "EventsScreen"
+    "OnboardingEventsScreen"
 >
 
-export default function EventsScreen() {
+export default function OnboardingEventsScreen() {
     const navigation = useNavigation<ScreenNavigationType>()
 
     const handleClick = () => {

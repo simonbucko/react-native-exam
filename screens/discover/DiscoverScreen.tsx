@@ -1,11 +1,20 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
-import globalStyles from '../styles/global';
-import Palette from '../styles/pallete';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import globalStyles from '../../styles/global';
+import Palette from '../../styles/pallete';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from "../../typings/navigations";
+import { useNavigation } from '@react-navigation/native';
+
+type ScreenNavigationType = NativeStackNavigationProp<
+    StackParamList,
+    "DiscoverScreen"
+>
 
 export default function DiscoverScreen() {
     const [value, setValue] = useState("")
+    const navigation = useNavigation<ScreenNavigationType>()
 
     return (
         <View style={globalStyles.mainScreenContainer}>
@@ -13,22 +22,22 @@ export default function DiscoverScreen() {
                 <FontAwesome name="search" size={24} color={Palette.dark} />
                 <TextInput style={styles.input} value={value} placeholder={"Search for events, posts and more"} onChangeText={(input) => setValue(input)} placeholderTextColor={Palette.light_gray}/>
             </View>
-            <View style={styles.card}>
-                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../assets/pics/eventsBg.jpg")}/>
+            <TouchableOpacity onPress={() => navigation.navigate("EventsScreen")} style={styles.card}>
+                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/eventsBg.jpg")}/>
                 <View style={styles.eventsOverlay}></View>
                 <View style={styles.textWrapper}>
                     <Text style={styles.text}>ALL EVENTS</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style={styles.card}>
-                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../assets/pics/organizationBg.jpg")}/>
+                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/organizationBg.jpg")}/>
                 <View style={styles.organizationOverlay}></View>
                 <View style={styles.textWrapper}>
                     <Text style={styles.text}>ALL STUDENT ORGANIZATION</Text>
                 </View>
             </View>
             <View style={styles.card}>
-                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../assets/pics/newspaperBg.jpg")}/>
+                <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/newspaperBg.jpg")}/>
                 <View style={styles.newsOverlay}></View>
                 <View style={styles.textWrapper}>
                     <Text style={styles.text}>ALL POST</Text>

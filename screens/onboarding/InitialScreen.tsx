@@ -30,7 +30,7 @@ export default function InitialScreen() {
     },[])
 
     return (
-        <TouchableOpacity activeOpacity={1} style={{...globalStyles.container,...styles.container}} onPress={() => navigation.navigate("EventsScreen")}>
+        <TouchableOpacity activeOpacity={1} style={{...globalStyles.container,...styles.container}} onPress={() => navigation.navigate("OnboardingEventsScreen")}>
             <Text style={{...globalStyles.text,...styles.title}}>Student Life {"\n"} at {"\n"}Copenhagen Business School</Text>
             <Text style={{...globalStyles.text,...styles.subtitle}}>BY</Text>
             <Image style={styles.image} source={require("../../assets/pics/studentsLogo.png")}/>

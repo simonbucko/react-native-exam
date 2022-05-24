@@ -1,9 +1,7 @@
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Foundation, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Palette from '../styles/pallete';
-import { Ionicons } from '@expo/vector-icons';
-import { Foundation } from '@expo/vector-icons';
 import HorizontalDivider from './HorizontalDivider';
 
 const BlogCard = ({item}:any) => {
