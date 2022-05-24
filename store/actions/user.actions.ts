@@ -83,7 +83,7 @@ export const signup = (email: string, password: string, confirmPassword: string)
                 })
             });
 
-            const user = new User(data.localId, data.email, '', '');
+            const user = new User(data.localId, data.email, '', '','');
 
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
@@ -130,8 +130,19 @@ export const login = (email: string, password: string) => {
             dispatch({type: LOGIN_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseLoginSuccess = await response.json(); 
+
+            const userResponse = await fetch(
+                `${API_URL}/users/${data.localId}.json`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            //tu by bolo dobre urobit ten isty check if OK 
+            const userData = await userResponse.json();
             
-            const user = new User(data.localId, data.email, '', '');
+            const user = new User(data.localId, data.email, userData.displayName, userData.studyProgram,'');
             
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
