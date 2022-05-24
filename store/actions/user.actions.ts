@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { FirebaseSignupSuccess } from "../../entities/FirebaseSignupSuccess";
 import { FirebaseLoginSuccess } from "../../entities/FirebaseLoginSuccess";
 import { User } from '../../entities/User';
-import { WEB_API_KEY } from '../../variables';
+import { WEB_API_KEY, API_URL } from '../../variables';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
@@ -68,7 +68,21 @@ export const signup = (email: string, password: string, confirmPassword: string)
             dispatch({type: SIGNUP_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseSignupSuccess = await response.json(); 
-            
+
+            const userResponse = await fetch(
+                `${API_URL}/users.json`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    [data.localId]:{
+                        displayName: "",
+                        studyProgram: ""
+                    }
+                })
+            });
+
             const user = new User(data.localId, data.email, '', '');
 
             await SecureStore.setItemAsync('idToken', data.idToken);
@@ -116,7 +130,6 @@ export const login = (email: string, password: string) => {
             dispatch({type: LOGIN_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseLoginSuccess = await response.json(); 
-
             
             const user = new User(data.localId, data.email, '', '');
             

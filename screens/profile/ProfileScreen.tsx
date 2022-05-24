@@ -16,6 +16,8 @@ export default function ProfileScreen() {
     const dispatch = useDispatch();
     const email: string = useSelector((state: RootState) => state.user.loggedInUser.email);
     const localId: string = useSelector((state: RootState) => state.user.loggedInUser.localId);
+    const displyName: string = useSelector((state: RootState) => state.user.loggedInUser.displyName);
+    const studyProgram: string = useSelector((state: RootState) => state.user.loggedInUser.studyProgram);
 
     return (
         <View style={[globalStyles.mainScreenContainer,styles.container]}>
