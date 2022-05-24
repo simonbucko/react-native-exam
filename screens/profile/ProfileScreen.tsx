@@ -15,6 +15,7 @@ export default function ProfileScreen() {
     const navigation = useNavigation<ScreenNavigationType>();
     const dispatch = useDispatch();
     const email: string = useSelector((state: RootState) => state.user.loggedInUser.email);
+    const localId: string = useSelector((state: RootState) => state.user.loggedInUser.localId);
 
     return (
         <View style={[globalStyles.mainScreenContainer,styles.container]}>
@@ -24,6 +25,7 @@ export default function ProfileScreen() {
                     <View style={styles.profileInfoWrapper}>
                         <Text style={styles.name}>Simon Bucko</Text>
                         <Text style={styles.email}>{email}</Text>
+                        <Text style={styles.email}>{localId}</Text>
                         <Text style={styles.program}>Keas tusok</Text>
                     </View>
                 </View>

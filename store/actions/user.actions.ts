@@ -68,8 +68,8 @@ export const signup = (email: string, password: string, confirmPassword: string)
             dispatch({type: SIGNUP_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseSignupSuccess = await response.json(); 
-
-            const user = new User(data.email, '', '');
+            
+            const user = new User(data.localId, data.email, '', '');
 
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
@@ -116,8 +116,9 @@ export const login = (email: string, password: string) => {
             dispatch({type: LOGIN_FAILED, payload: errorMessage})
         } else {
             const data: FirebaseLoginSuccess = await response.json(); 
+
             
-            const user = new User(data.email, '', '');
+            const user = new User(data.localId, data.email, '', '');
             
             await SecureStore.setItemAsync('idToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user)); 
