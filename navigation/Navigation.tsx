@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
-import {DiscoverScreen,EventsScreen} from '../screens/discover';
+import {DiscoverScreen,EventsScreen, BlogsScreen} from '../screens/discover';
 import {SignupScreen,LoginScreen} from '../screens/auth';
 import {ProfileScreen,EditProfileScreen} from '../screens/profile';
 import { StackParamList } from "../typings/navigations";
@@ -36,6 +36,15 @@ function DiscoverStackNavigator() {
                 component={EventsScreen} 
                 options={{
                     headerTitle: "EVENTS",
+                    headerTitleStyle: {...styles.screenTitle},
+                    headerBackTitle: ""
+                }}
+                />
+            <Stack.Screen 
+                name="BlogsScreen" 
+                component={BlogsScreen} 
+                options={{
+                    headerTitle: "BLOGS",
                     headerTitleStyle: {...styles.screenTitle},
                     headerBackTitle: ""
                 }}

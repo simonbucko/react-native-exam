@@ -36,13 +36,13 @@ export default function DiscoverScreen() {
                     <Text style={styles.text}>ALL STUDENT ORGANIZATION</Text>
                 </View>
             </View>
-            <View style={styles.card}>
+            <TouchableOpacity onPress={() => navigation.navigate("BlogsScreen")} style={styles.card}>
                 <Image progressiveRenderingEnabled={true} style={styles.image} source={require("../../assets/pics/newspaperBg.jpg")}/>
                 <View style={styles.newsOverlay}></View>
                 <View style={styles.textWrapper}>
                     <Text style={styles.text}>ALL POST</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }

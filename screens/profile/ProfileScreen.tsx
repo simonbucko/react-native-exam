@@ -4,15 +4,17 @@ import React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { StackParamList } from '../../typings/navigations';
 import { logout } from '../../store/actions/user.actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import globalStyles from '../../styles/global';
 import Palette from '../../styles/pallete';
+import { RootState } from '../../store'
 
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "Profile">;
 
 export default function ProfileScreen() {
     const navigation = useNavigation<ScreenNavigationType>();
     const dispatch = useDispatch();
+    const email: string = useSelector((state: RootState) => state.user.loggedInUser.email);
 
     return (
         <View style={[globalStyles.mainScreenContainer,styles.container]}>
@@ -21,7 +23,7 @@ export default function ProfileScreen() {
                     <Image style={styles.image} progressiveRenderingEnabled={true} source={require("../../assets/pics/anonymProfile.jpg")}/>
                     <View style={styles.profileInfoWrapper}>
                         <Text style={styles.name}>Simon Bucko</Text>
-                        <Text style={styles.email}>eamil</Text>
+                        <Text style={styles.email}>{email}</Text>
                         <Text style={styles.program}>Keas tusok</Text>
                     </View>
                 </View>

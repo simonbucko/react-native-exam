@@ -12,6 +12,7 @@ export type StackParamList = {
     
     DiscoverScreen: undefined;
     EventsScreen: undefined;
+    BlogsScreen: undefined;
 
     Profile: undefined;
     EditProfile: undefined;
