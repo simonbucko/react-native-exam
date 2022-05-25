@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Navigation from './navigation/Navigation';
 import AppLoading from 'expo-app-loading';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import {
   useFonts,
   Teko_300Light,
@@ -25,9 +26,14 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
+
+    const queryClient = new QueryClient()
+
     return (
       <Provider store={store}>
-        <Navigation />
+        <QueryClientProvider client={queryClient}>
+          <Navigation />
+        </QueryClientProvider>
       </Provider>
     )
   }

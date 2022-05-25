@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BlogCard, EventCard } from "../components";
 import { Blog } from '../entities/Blog';
 import { Event } from '../entities/Event';
+import { useGetBlogs } from '../reactQueries';
 import { RootState } from '../store';
 import { fetchBlogs } from '../store/actions/blogs.actions';
 import { fetchEvents } from '../store/actions/events.actions';
@@ -12,12 +13,13 @@ import globalStyles from '../styles/global';
 export default function HomeScreen() {
     const dispatch = useDispatch();
     const events: Event[] = useSelector((state: RootState) => state.events.events);
-    const blogs: Blog[] = useSelector((state: RootState) => state.blogs.blogs);
+    // const blogs: Blog[] = useSelector((state: RootState) => state.blogs.blogs);
+    const {isLoading, isError, blogs, error} = useGetBlogs();
 
 
     useEffect(() => {
       dispatch(fetchEvents())    
-      dispatch(fetchBlogs())    
+    //   dispatch(fetchBlogs())    
     }, [])
     
 
