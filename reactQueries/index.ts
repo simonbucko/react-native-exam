@@ -19,7 +19,6 @@ export const useGetBlogs = () => {
 
     const {isLoading, isError, data, error} = useQuery("blogs",fetchBlogs)
 
-    console.log(data)
     let blogs: Blog[] = []
     for (const key in data) {
         const obj = data[key];
